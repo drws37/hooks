@@ -57,6 +57,19 @@
   margin: 5px 0;
 }
 
+.box-card {
+ display: flex;
+}
+
+.box-card h2{
+ margin: 5px 20px;
+}
+
+.box-logo {
+  width: 48px;
+  height: 48px;
+}
+
 a {
   font-weight: 500;
   color: #646cff;

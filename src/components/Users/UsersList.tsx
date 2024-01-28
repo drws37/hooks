@@ -31,27 +31,47 @@ function UsersList({
     })
       .then((response) => response.json())
       .then((data) => setUsers([...users, data]));
+
+    // очистка формы
+    setName('');
+    setEmail('');
+    setPhone('');
   };
 
-  const onHandleDelete = (id: number):void => {
-    setUsers(users.filter((user)=> user.id !== id))
+  const onHandleDelete = (id: number): void => {
+    setUsers(users.filter((user) => user.id !== id));
 
     fetch(`https://65b6163eda3a3c16ab002eec.mockapi.io/api/app/users/${id}`, {
       method: 'DELETE',
-    })
-  }
+    });
+  };
 
   return (
     <>
       <div className="add-form">
         <form onSubmit={addUser}>
-          <input placeholder='name' type="text" value={name} onChange={(e) => setName(e.target.value)} />
-          <input placeholder='email' type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <input placeholder='phone' type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
+          <input
+            placeholder="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            placeholder="email"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            placeholder="phone"
+            type="text"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          />
           <button type="submit">add profile</button>
         </form>
       </div>
-      <div className='profiles-list'>
+      <div className="profiles-list">
         {users.map((user) => (
           <User user={user} onHandleDelete={onHandleDelete} key={user.id} />
         ))}
